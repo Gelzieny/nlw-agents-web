@@ -5,11 +5,13 @@ import type { GetRoomQuestionsResponse } from './types/get-room-questions-respon
 
 export function useCreateQuestion(roomId: string) {
   const queryClient = useQueryClient()
+  const API_URL = import.meta.env.VITE_API_URL
+
 
   return useMutation({
     mutationFn: async (data: CreateQuestionRequest) => {
       const response = await fetch(
-        `http://localhost:3333/rooms/${roomId}/questions`,
+        `${API_URL}/rooms/${roomId}/questions`,
         {
           method: 'POST',
           headers: {

@@ -18,6 +18,8 @@ export function RecordRoomAudio() {
   const recorder = useRef<MediaRecorder | null>(null)
   const intervalRef = useRef<NodeJS.Timeout>(null)
 
+  const API_URL = import.meta.env.VITE_API_URL
+
   function stopRecording() {
     setIsRecording(false)
 
@@ -36,7 +38,7 @@ export function RecordRoomAudio() {
     formData.append('file', audio, 'audio.webm')
 
     const response = await fetch(
-      `http://localhost:3333/rooms/${params.roomId}/audio`,
+      `${API_URL}/rooms/${params.roomId}/audio`,
       {
         method: 'POST',
         body: formData,
